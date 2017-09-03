@@ -14,60 +14,8 @@ http://www.springframework.org/schema/util/spring-util.xsd
 http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring
 http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.2.xsd">
 
-<<<<<<< HEAD
     <context:component-scan base-package="com.bgip"/>
 
  
-=======
-    <context:component-scan base-package="com.fab"/>
-
-
-   
- 
-
-
-<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-    <!-- brokerURL, You may have different IP or port -->
-    <constructor-arg index="0" value="tcp://localhost:61616" />
-  </bean>
- 
-  <!-- Pooled Spring connection factory -->
-  <bean id="connectionFactory"
-    class="org.springframework.jms.connection.CachingConnectionFactory">
-    <constructor-arg ref="amqConnectionFactory" />
-  </bean>
- 
-  <!-- ======================================================= -->
-  <!-- JMS Send, define default destination and JmsTemplate    -->
-  <!-- ======================================================= -->
-  <!-- Default Destination Queue Definition -->
-  <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
-    <!-- name of the queue -->
-    <constructor-arg index="0" value="simonqueue" />
-  </bean>
- 
-  <!-- JmsTemplate Definition -->
-  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-    <property name="connectionFactory" ref="connectionFactory" />
-    <property name="defaultDestination" ref="defaultDestination" />
-  </bean>
- 
- <!-- Consumer configuration -->
- 
- <bean id="messageListenerAdapter"
-    class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
-    <constructor-arg ref="jmsMessageListener" />
-  </bean>
-   
-  <bean id="messageListenerContainer"
-    class="org.springframework.jms.listener.DefaultMessageListenerContainer">
-    <property name="connectionFactory" ref="connectionFactory" />
-    <property name="destinationName" value="simonqueue" />
-    <property name="messageListener" ref="messageListenerAdapter" />
-  </bean>
-	   
- 
-	
->>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22
 
 </beans>
