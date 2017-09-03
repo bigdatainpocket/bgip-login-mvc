@@ -17,19 +17,32 @@ and open the template in the editor.
     </context-param>
     
      <servlet>
+<<<<<<< HEAD
         <servlet-name>BGIPServlet</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>  
             <init-param>  
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>com.bgip.application.BgipApplication</param-value>
+=======
+        <servlet-name>FabServlet</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>  
+            <init-param>  
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.fab.application.FabApplication</param-value>
+>>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22
         </init-param>
          
         <load-on-startup>1</load-on-startup>
     </servlet>
     
     <servlet-mapping>  
+<<<<<<< HEAD
         <servlet-name>BGIPServlet</servlet-name>  
         <url-pattern>/bgip/*</url-pattern>  
+=======
+        <servlet-name>FabServlet</servlet-name>  
+        <url-pattern>/fabcircles/rest/*</url-pattern>  
+>>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22
     </servlet-mapping> 
     
    

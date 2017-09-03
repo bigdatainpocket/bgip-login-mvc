@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <Context antiJARLocking="true" path="bgip"/>
+=======
+<Context antiJARLocking="true" path="/fabcircles"/>
+>>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22

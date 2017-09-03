@@ -14,8 +14,15 @@ http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcac
 
     <context:property-placeholder location="/WEB-INF/spring/spring.properties" />
 
+<<<<<<< HEAD
     <context:component-scan base-package="com.bgip"/>
 
+=======
+    <context:component-scan base-package="com.fab"/>
+
+   <!--  <import resource="jdbc-context.xml"></import>  -->
+    
+>>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22
     
      <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
         <property name="host" value="${mongo.host}" />

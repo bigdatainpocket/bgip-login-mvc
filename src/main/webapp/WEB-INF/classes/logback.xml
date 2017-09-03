@@ -14,7 +14,11 @@
         </encoder>
     </appender>
    
+<<<<<<< HEAD
     <logger name="com.bgip" level="${logback.level}"/>
+=======
+    <logger name="com.fab" level="${logback.level}"/>
+>>>>>>> fb364a9005f8c971d81939a9ddee54b434eacb22
     <root level="${logback.level}">
         <appender-ref ref="FILE" />
     </root>
