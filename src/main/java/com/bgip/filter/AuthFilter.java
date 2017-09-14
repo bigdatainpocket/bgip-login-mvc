@@ -17,7 +17,7 @@ import org.jboss.resteasy.core.Headers;
 import org.jboss.resteasy.core.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import com.bgip.utils.FabUtils;
+import com.bgip.utils.BgipUtils;
 
 
 
@@ -45,7 +45,7 @@ public class AuthFilter implements ContainerRequestFilter
         String requestUri = requestContext.getUriInfo().getPath();
         
         //No validation for Login API
-        if (requestUri.endsWith("login") || requestUri.endsWith("signUp")) {
+        if (requestUri.endsWith("login") || requestUri.endsWith("signUp") || requestUri.endsWith("socialLogin") ) {
             return;
         }
         //Get the token from Request
@@ -70,14 +70,14 @@ public class AuthFilter implements ContainerRequestFilter
 				requestContext.abortWith(ACCESS_FORBIDDEN);
 			}
 			//Decrypt the token 
-			decryptedToken = FabUtils.decryptString(URLDecoder.decode(token, "UTF-8"), appProperties);
+			decryptedToken = BgipUtils.decryptString(URLDecoder.decode(token, "UTF-8"), appProperties);
 			
 			//Split the token using Delimeter
 			String[] tokenParts = decryptedToken.split(Pattern.quote(appProperties.getProperty("app.login.delimiter")));
 			//If splits are 3 in lenght it is valid
 			if(tokenParts.length ==  3){
 				final String timeStmap = tokenParts[1];
-				boolean tokenValid = FabUtils.isTokenValid(timeStmap);
+				boolean tokenValid = BgipUtils.isTokenValid(timeStmap);
 				System.out.println(" tokenValid result :"+tokenValid);
 				if(!tokenValid){
 					requestContext.abortWith(ACCESS_FORBIDDEN);
@@ -97,7 +97,7 @@ public class AuthFilter implements ContainerRequestFilter
 	// get userName From Token
 	public String getUserNameFromToken(String token)throws Exception{
 
-		String decryptedToken = FabUtils.decryptString(URLDecoder.decode(token, "UTF-8"), appProperties);
+		String decryptedToken = BgipUtils.decryptString(URLDecoder.decode(token, "UTF-8"), appProperties);
 		
 		System.out.println("decryptedToken :"+decryptedToken);
 		

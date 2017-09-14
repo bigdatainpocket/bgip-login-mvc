@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 public class BgipConstants {
 	
 	public final static String USER_COLLECTION = "user";
+	public final static String USER_DEFAULT_BDAY = "01-JAN-1980";
+	public final static String USER_DEFAULT_NUMBER= "00-0000";
+	
+	
 	
 	
 	

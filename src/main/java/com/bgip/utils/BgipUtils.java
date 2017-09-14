@@ -14,15 +14,15 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.salt.StringFixedSaltGenerator;
 import org.slf4j.Logger;
 
-import com.bgip.exception.FabException;
+import com.bgip.exception.BgipException;
 
-public class FabUtils {
+public class BgipUtils {
 
-    private static final Logger LOGGER = getLogger(FabUtils.class);
+    private static final Logger LOGGER = getLogger(BgipUtils.class);
     private static final String UTF8_ENCODING = "UTF-8";
     private static StandardPBEStringEncryptor userEncryptor = null;
 
-    private FabUtils() {
+    private BgipUtils() {
     }
 
 
@@ -59,14 +59,14 @@ public class FabUtils {
 
 
 
-    public static String generateAccessToken(String username, String role, String delim, Properties appProperties) throws FabException {
+    public static String generateAccessToken(String username, String role, String delim, Properties appProperties) throws BgipException {
         try {
             String unencryptedString = username + delim + new Date().getTime()  + delim + role;
             String authToken = encryptString(unencryptedString, appProperties);
             return encode(authToken, UTF8_ENCODING);
         } catch (Exception ex) {
             LOGGER.error("Error during Token generation : ", ex);
-            throw new FabException(ex.getMessage(), ex);
+            throw new BgipException(ex.getMessage(), ex);
         }
     }
 

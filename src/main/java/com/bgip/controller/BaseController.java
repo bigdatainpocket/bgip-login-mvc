@@ -1,4 +1,4 @@
-package com.bgip.resources;
+package com.bgip.controller;
 
 import static javax.ws.rs.core.Response.status;
 
@@ -9,7 +9,7 @@ import com.bgip.model.ResponseBean;
 
 
 
-public class BaseResource {
+public class BaseController {
 	
 	
 	 public void buildErrorResponse(final Response.Status x, final String errorCode, final String message) throws WebApplicationException {

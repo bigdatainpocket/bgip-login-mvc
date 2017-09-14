@@ -7,7 +7,7 @@ import javax.ws.rs.core.Response.Status;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FabException extends Exception {
+public class BgipException extends Exception {
 
     /**
 	 * 
@@ -16,7 +16,7 @@ public class FabException extends Exception {
 	private  String errorCode = null;
 	private Status status = null;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FabException.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BgipException.class);
 
 
 
@@ -27,22 +27,22 @@ public class FabException extends Exception {
      * Create exception object with the default message.
      */
 
-    public FabException(String errorCode, String message){
+    public BgipException(String errorCode, String message){
     	super(message);
     	this.errorCode = errorCode;
         }
-    public FabException(String errorCode, String message, Status status){
+    public BgipException(String errorCode, String message, Status status){
     	super(message);
     	this.errorCode = errorCode;
     	this.status = status;
     	
         }
 
-    public FabException(String errorCode){
+    public BgipException(String errorCode){
     	super(errorCode);
         }
     
-    public FabException(String code, Throwable cause){
+    public BgipException(String code, Throwable cause){
     	super(code, cause);
         }
 
