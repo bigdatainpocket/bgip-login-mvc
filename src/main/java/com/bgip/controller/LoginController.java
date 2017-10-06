@@ -29,9 +29,7 @@ import com.bgip.service.UserService;
 import com.bgip.utils.BgipUtils;
 
 
-
-
-
+@Path("login")
 @Produces(APPLICATION_JSON)
 public class LoginController extends BaseController {
 
@@ -43,7 +41,6 @@ public class LoginController extends BaseController {
     @Autowired
     UserService userService;
     @POST
-    @Path("login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     public LoginBean login(LoginBean login, @Context HttpServletResponse response) throws Exception {

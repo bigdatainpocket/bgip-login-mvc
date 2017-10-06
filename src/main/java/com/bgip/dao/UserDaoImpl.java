@@ -174,6 +174,9 @@ public class UserDaoImpl  extends BaseDAO implements UserDAO {
 	
 	//getUser Details By Email
 		public LoginBean socialLogin(LoginBean loginBean) throws Exception {
+			
+//			UserBean userBeanFromDB = mongoManager.getObjectByField(BgipConstants.USER_COLLECTION, "userName",
+//					login.getUserName(), UserBean.class);
 			LoginBean loginBeanFromDB = mongoManager.getObjectByField(com.bgip.constants.BgipConstants.USER_COLLECTION,
 					"email", loginBean.getEmail(), LoginBean.class);
 			try{

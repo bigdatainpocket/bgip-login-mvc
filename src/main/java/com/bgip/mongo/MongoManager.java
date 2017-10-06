@@ -2,6 +2,8 @@ package com.bgip.mongo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -115,18 +117,47 @@ public class MongoManager {
 	
 	
 	public <T> WriteResult updateByField(String collectionName,
-			String fieldName, String fieldValue, String key, String keyvalue)
+			String fieldName, String loginUser, String key, boolean b)
 			throws Exception {
 		WriteResult object = null;
-		Query query = new Query(Criteria.where(fieldName).is(fieldValue));
+		Query query = new Query(Criteria.where(fieldName).is(loginUser));
 		Update update = new Update();
-		update.set(key, keyvalue);
+		update.set(key, b);
 		// object = mongoTemplate.updateFirst(query, Update.update(key,
 		// keyvalue), className);
 		object = mongoTemplate.updateFirst(query, update,
 				collectionName);
 		return object;
 	}
+	
+	public <T> WriteResult updateByField(String collectionName,
+			String fieldName, ObjectId objectId, String key, boolean b)
+			throws Exception {
+		WriteResult object = null;
+		Query query = new Query(Criteria.where(fieldName).is(objectId));
+		Update update = new Update();
+		update.set(key, b);
+		// object = mongoTemplate.updateFirst(query, Update.update(key,
+		// keyvalue), className);
+		object = mongoTemplate.updateFirst(query, update,
+				collectionName);
+		return object;
+	}
+	
+	public <T> WriteResult updateByField(String collectionName,
+			String fieldName, String objectId, String key, String b)
+			throws Exception {
+		WriteResult object = null;
+		Query query = new Query(Criteria.where(fieldName).is(objectId));
+		Update update = new Update();
+		update.set(key, b);
+		// object = mongoTemplate.updateFirst(query, Update.update(key,
+		// keyvalue), className);
+		object = mongoTemplate.updateFirst(query, update,
+				collectionName);
+		return object;
+	}
+	
 	
 	
 	public <T> WriteResult updateBy2Fields(String collectionName,
@@ -334,6 +365,17 @@ public class MongoManager {
 			}
 		}	
 	
+	public  <T> T findBy3Fields(String collectionName, String fieldName1, ObjectId objectId, String fieldName2, String fieldValue2,String fieldName3, boolean b, Class<T> class1) throws Exception {
+		T object = null;
+		try {
+			Query query = new Query(Criteria.where(fieldName1).is(objectId) .and(fieldName2).is(fieldValue2) .and(fieldName3).is(b));
+			object = mongoTemplate.findOne(query, class1, collectionName);
+			return object;
+				} catch (Exception e) {
+					throw new Exception(e);
+			}
+		}	
+	
 	
 	public  <T> T findBy3Fields(String collectionName, String fieldName1, String fieldValue1, String fieldName2, String fieldValue2,String fieldName3, boolean fieldValue3, Class<T> className) throws Exception {
 		T object = null;
@@ -366,6 +408,20 @@ public class MongoManager {
 		objectList = mongoTemplate.find(query, className, collectionName);
 		return objectList;
 	}
+	
+	
+	
+	public <T> List<T> getObjectsBy2Fields(String collectionName, String fieldName1, String fieldValue1, String fieldName2, boolean b, Class<T> class1) throws Exception {
+		List<T> objectList = null;
+		Query query = new Query(Criteria.where(fieldName1).is(fieldValue1) .and(fieldName2).is(b));
+		objectList = mongoTemplate.find(query, class1, collectionName);
+		return objectList;
+	}
+	
+	
+	
+	
+	
 	public <T> List<T> getObjectsBy3Fields(String collectionName, String fieldName1, String fieldValue1, String fieldName2, String fieldValue2,String fieldName3, String fieldValue3, Class<T> className) throws Exception {
 		List<T> objectList = null;
 		Query query = new Query(Criteria.where(fieldName1).is(fieldValue1) .and(fieldName2).is(fieldValue2) . and(fieldName3).is(fieldValue3));
